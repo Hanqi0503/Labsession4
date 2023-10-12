@@ -294,7 +294,7 @@ public class FormPanel extends javax.swing.JPanel {
         if (img != null) {
         ImageIcon icon = new ImageIcon(img);
         Photo = icon;
-        System.out.println("Hello, World!");
+        
         } else {
         throw new Exception();
         }
