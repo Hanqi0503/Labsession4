@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="genderGroup">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="cc" green="99" red="ff" type="rgb"/>
@@ -28,29 +32,41 @@
                       <Component id="titleLable" min="-2" pref="341" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lastNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="ageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="messageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="firstNameTextField" alignment="0" pref="137" max="32767" attributes="0"/>
-                          <Component id="lastNameTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="ageTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
-                          <Component id="messageTextField" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
                       <Component id="submitButton" min="-2" pref="236" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="ageLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="emailLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="messageLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lastNameTextField" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="firstNameTextField" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="ageTextField" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="emailTextField" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="messageTextField" min="-2" pref="137" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="genderLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="patientTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="patientTypeComboBox" min="-2" max="-2" attributes="0"/>
+                          <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="maleRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="notMentionedRadioButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="164" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -63,16 +79,23 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="firstNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="firstNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="genderLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="maleRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="femaleRadioButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lastNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lastNameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="notMentionedRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="ageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ageTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="patientTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="patientTypeComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -98,7 +121,7 @@
           <Font name="Cochin" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Customer Registration Form"/>
+        <Property name="text" type="java.lang.String" value="Patient Registration Form"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="firstNameLabel">
@@ -143,6 +166,58 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="genderLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gender:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="maleRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="genderGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Male"/>
+        <Property name="actionCommand" type="java.lang.String" value="MALE USER"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="femaleRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="genderGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Femal"/>
+        <Property name="actionCommand" type="java.lang.String" value="FEMALE USER"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="notMentionedRadioButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="genderGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Prefer not to say"/>
+        <Property name="actionCommand" type="java.lang.String" value="NOT SPECIFIED"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="patientTypeLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Patient Type:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="patientTypeComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="Inpatient"/>
+            <StringItem index="1" value="Outpatient"/>
+            <StringItem index="2" value="Emergency"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

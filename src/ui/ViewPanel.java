@@ -4,24 +4,23 @@
  */
 package ui;
 
-import java.awt.CardLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import model.User;
 
 /**
  *
  * @author hanqi
  */
-public class FormPanel extends javax.swing.JPanel {
+public class ViewPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form FormPanel
      */
-    private JPanel bottomPanel;
-    public FormPanel(JPanel bottomPanel) {
+    private User newUser;
+    public ViewPanel(User newUser) {
         initComponents();
-        this.bottomPanel = bottomPanel;
+        this.newUser = newUser;
+        populateData();
     }
 
     /**
@@ -45,7 +44,6 @@ public class FormPanel extends javax.swing.JPanel {
         ageTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         messageTextField = new javax.swing.JTextField();
-        submitButton = new javax.swing.JButton();
         genderLabel = new javax.swing.JLabel();
         maleRadioButton = new javax.swing.JRadioButton();
         femaleRadioButton = new javax.swing.JRadioButton();
@@ -57,7 +55,7 @@ public class FormPanel extends javax.swing.JPanel {
 
         titleLable.setFont(new java.awt.Font("Cochin", 1, 18)); // NOI18N
         titleLable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleLable.setText("Patient Registration Form");
+        titleLable.setText("View Form");
 
         firstNameLabel.setText("First Name:");
 
@@ -69,13 +67,6 @@ public class FormPanel extends javax.swing.JPanel {
 
         messageLabel.setText("Message:");
 
-        submitButton.setText("SUBMIT");
-        submitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitButtonActionPerformed(evt);
-            }
-        });
-
         genderLabel.setText("Gender:");
 
         genderGroup.add(maleRadioButton);
@@ -86,7 +77,6 @@ public class FormPanel extends javax.swing.JPanel {
         femaleRadioButton.setText("Femal");
         femaleRadioButton.setActionCommand("FEMALE USER");
 
-        genderGroup.add(notMentionedRadioButton);
         notMentionedRadioButton.setText("Prefer not to say");
         notMentionedRadioButton.setActionCommand("NOT SPECIFIED");
 
@@ -104,9 +94,6 @@ public class FormPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(titleLable, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,95 +153,9 @@ public class FormPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messageLabel)
                     .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(submitButton)
-                .addGap(24, 24, 24))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-        User newUser = new User();
-        newUser.setFirstName(firstNameTextField.getText());
-        newUser.setLastName(lastNameTextField.getText());
-        newUser.setAge(ageTextField.getText());
-        newUser.setEmail(emailTextField.getText());
-        newUser.setMessage(messageTextField.getText());
-        String Gender = maleRadioButton.isSelected() ? "Male" : femaleRadioButton.isSelected() ? "Female" : notMentionedRadioButton.isSelected() ? "Prefer not to say" : "";
-        newUser.setGender(Gender);
-        newUser.setPatientType(patientTypeComboBox.getSelectedItem().toString());
-        
-        ViewPanel newViewPanel = new ViewPanel(newUser);
-        bottomPanel.add(newViewPanel);
-        CardLayout layout = (CardLayout) bottomPanel.getLayout();
-        layout.next(bottomPanel);
-        
-        String FirstName = firstNameTextField.getText();
-        String LastName = lastNameTextField.getText();
-        String Age = ageTextField.getText();
-        String Email = emailTextField.getText();
-        String Message = messageTextField.getText();
-//        String Gender = gender;
-        String PatientType = patientTypeComboBox.getSelectedItem().toString();
-        boolean noError = true;
-        if(FirstName.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "First Name is mandatory");
-        }
-        if(LastName.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Last Name is mandatory");
-        }
-        if(Age.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Age is mandatory");
-        }
-        if(Email.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Email is mandatory");
-        }
-        if(Message.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Message is mandatory");
-        }
-        if(Gender.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Gender is mandatory");
-        }
-        if(PatientType.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Patient type is mandatory");
-        }
-        
-        if(!firstNameTextField.getText().isEmpty() & !firstNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "First Name must contain only letters or Chinese characters!");
-        }
-        if(!lastNameTextField.getText().isEmpty() & !lastNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Last Name must contain only letters or Chinese characters!");
-        }
-        if(!ageTextField.getText().isEmpty()){
-            int age;
-
-            try {
-                age = Integer.parseInt(ageTextField.getText());
-            }
-            catch (NumberFormatException e) {
-                noError = false;
-                JOptionPane.showMessageDialog(null, "Age must be a valid integer !");
-                return;
-            }
-        }
-        if(!emailTextField.getText().isEmpty() & !emailTextField.getText().matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Email address is not valid!");
-        }
-
-        if (noError) {
-            JOptionPane.showMessageDialog(this, FirstName+" "+LastName+" "+Age+" "+Email+" "+Message+" "+Gender+" "+PatientType, "Customer Registration Form", HEIGHT);
-        }
-    }//GEN-LAST:event_submitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -275,7 +176,24 @@ public class FormPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton notMentionedRadioButton;
     private javax.swing.JComboBox<String> patientTypeComboBox;
     private javax.swing.JLabel patientTypeLabel;
-    private javax.swing.JButton submitButton;
     private javax.swing.JLabel titleLable;
     // End of variables declaration//GEN-END:variables
+
+    private void populateData() {
+        firstNameTextField.setText(this.newUser.getFirstName());
+        lastNameTextField.setText(this.newUser.getLastName());
+        ageTextField.setText(this.newUser.getAge());
+        emailTextField.setText(this.newUser.getEmail());
+        messageTextField.setText(this.newUser.getMessage());
+        
+        if (this.newUser.getGender().equals("Male")) {
+        maleRadioButton.setSelected(true);
+        } else if (this.newUser.getGender().equals("Female")) {
+            femaleRadioButton.setSelected(true);
+        } else {
+            notMentionedRadioButton.setSelected(true);
+        }
+        
+        patientTypeComboBox.setSelectedItem(this.newUser.getPatientType());
+    }
 }

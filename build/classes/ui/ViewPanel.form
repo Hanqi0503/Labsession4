@@ -32,10 +32,6 @@
                       <Component id="titleLable" min="-2" pref="341" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="268" max="-2" attributes="0"/>
-                      <Component id="submitButton" min="-2" pref="236" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lastNameLabel" min="-2" max="-2" attributes="0"/>
@@ -107,9 +103,7 @@
                   <Component id="messageLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="messageTextField" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
-              <Component id="submitButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,7 +115,7 @@
           <Font name="Cochin" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Patient Registration Form"/>
+        <Property name="text" type="java.lang.String" value="View Form"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="firstNameLabel">
@@ -159,14 +153,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="messageTextField">
     </Component>
-    <Component class="javax.swing.JButton" name="submitButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="SUBMIT"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitButtonActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JLabel" name="genderLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Gender:"/>
@@ -192,9 +178,6 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="notMentionedRadioButton">
       <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="genderGroup"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="Prefer not to say"/>
         <Property name="actionCommand" type="java.lang.String" value="NOT SPECIFIED"/>
       </Properties>
