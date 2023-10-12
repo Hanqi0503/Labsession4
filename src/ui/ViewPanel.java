@@ -50,6 +50,7 @@ public class ViewPanel extends javax.swing.JPanel {
         notMentionedRadioButton = new javax.swing.JRadioButton();
         patientTypeLabel = new javax.swing.JLabel();
         patientTypeComboBox = new javax.swing.JComboBox<>();
+        photoLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 153, 204));
 
@@ -85,6 +86,8 @@ public class ViewPanel extends javax.swing.JPanel {
         patientTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inpatient", "Outpatient", "Emergency" }));
         patientTypeComboBox.setSelectedIndex(-1);
 
+        photoLabel.setText("Photo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,9 +113,10 @@ public class ViewPanel extends javax.swing.JPanel {
                             .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(photoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(genderLabel)
-                            .addComponent(patientTypeLabel))
+                            .addComponent(patientTypeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(patientTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,14 +149,19 @@ public class ViewPanel extends javax.swing.JPanel {
                     .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(patientTypeLabel)
                     .addComponent(patientTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailLabel)
-                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageLabel)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailLabel)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(messageLabel)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(photoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(85, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -176,6 +185,7 @@ public class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton notMentionedRadioButton;
     private javax.swing.JComboBox<String> patientTypeComboBox;
     private javax.swing.JLabel patientTypeLabel;
+    private javax.swing.JLabel photoLabel;
     private javax.swing.JLabel titleLable;
     // End of variables declaration//GEN-END:variables
 
@@ -195,5 +205,6 @@ public class ViewPanel extends javax.swing.JPanel {
         }
         
         patientTypeComboBox.setSelectedItem(this.newUser.getPatientType());
+        photoLabel.setIcon(newUser.getUserImage());
     }
 }

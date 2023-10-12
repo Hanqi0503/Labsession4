@@ -4,6 +4,8 @@
  */
 package model;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author hanqi
@@ -16,6 +18,14 @@ public class User {
     String Message;
     String Gender;
     String PatientType;
+    private ImageIcon Photo;
+    public ImageIcon getUserImage() {
+        return Photo;
+    }
+
+    public void setUserImage(ImageIcon userImage) {
+        this.Photo = Photo;
+    }
     
     public String getFirstName(){
         return FirstName;

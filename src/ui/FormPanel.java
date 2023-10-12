@@ -5,6 +5,11 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.User;
@@ -52,6 +57,7 @@ public class FormPanel extends javax.swing.JPanel {
         notMentionedRadioButton = new javax.swing.JRadioButton();
         patientTypeLabel = new javax.swing.JLabel();
         patientTypeComboBox = new javax.swing.JComboBox<>();
+        uploadButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 153, 204));
 
@@ -95,6 +101,13 @@ public class FormPanel extends javax.swing.JPanel {
         patientTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inpatient", "Outpatient", "Emergency" }));
         patientTypeComboBox.setSelectedIndex(-1);
 
+        uploadButton.setText("Upload");
+        uploadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,16 +135,22 @@ public class FormPanel extends javax.swing.JPanel {
                             .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(113, 113, 113)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(genderLabel)
-                            .addComponent(patientTypeLabel))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(patientTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(femaleRadioButton)
-                            .addComponent(maleRadioButton)
-                            .addComponent(notMentionedRadioButton))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(genderLabel)
+                                    .addComponent(patientTypeLabel))
+                                .addGap(29, 29, 29)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(patientTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(femaleRadioButton)
+                                    .addComponent(maleRadioButton)
+                                    .addComponent(notMentionedRadioButton)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(uploadButton)
+                                .addGap(134, 134, 134)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -162,11 +181,17 @@ public class FormPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(messageLabel)
-                    .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(messageLabel)
+                            .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(uploadButton)
+                        .addGap(80, 80, 80)))
                 .addComponent(submitButton)
                 .addGap(24, 24, 24))
         );
@@ -183,6 +208,7 @@ public class FormPanel extends javax.swing.JPanel {
         String Gender = maleRadioButton.isSelected() ? "Male" : femaleRadioButton.isSelected() ? "Female" : notMentionedRadioButton.isSelected() ? "Prefer not to say" : "";
         newUser.setGender(Gender);
         newUser.setPatientType(patientTypeComboBox.getSelectedItem().toString());
+        newUser.setUserImage(Photo);
         
         ViewPanel newViewPanel = new ViewPanel(newUser);
         bottomPanel.add(newViewPanel);
@@ -196,6 +222,7 @@ public class FormPanel extends javax.swing.JPanel {
         String Message = messageTextField.getText();
 //        String Gender = gender;
         String PatientType = patientTypeComboBox.getSelectedItem().toString();
+        
         boolean noError = true;
         if(FirstName.equals("")){
             noError = false;
@@ -255,6 +282,29 @@ public class FormPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, FirstName+" "+LastName+" "+Age+" "+Email+" "+Message+" "+Gender+" "+PatientType, "Customer Registration Form", HEIGHT);
         }
     }//GEN-LAST:event_submitButtonActionPerformed
+    public ImageIcon Photo;
+    private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser file = new JFileChooser();
+        if (file.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+        try {
+        BufferedImage img = ImageIO.read(file.getSelectedFile());
+//        edited_image = img.getScaledInstance(60, 80, Image.SCALE_SMOOTH);
+        if (img != null) {
+        ImageIcon icon = new ImageIcon(img);
+        Photo = icon;
+        System.out.println("Hello, World!");
+        } else {
+        throw new Exception();
+        }
+        } catch (Exception ex) {
+            
+        }
+        }
+
+
+    }//GEN-LAST:event_uploadButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -277,5 +327,6 @@ public class FormPanel extends javax.swing.JPanel {
     private javax.swing.JLabel patientTypeLabel;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel titleLable;
+    private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables
 }
