@@ -24,9 +24,11 @@ public class FormPanel extends javax.swing.JPanel {
      * Creates new form FormPanel
      */
     private JPanel bottomPanel;
+    private User newUser;
     public FormPanel(JPanel bottomPanel) {
         initComponents();
         this.bottomPanel = bottomPanel;
+        this.newUser = new User();
     }
 
     /**
@@ -294,7 +296,6 @@ public class FormPanel extends javax.swing.JPanel {
         if (img != null) {
         ImageIcon icon = new ImageIcon(img);
         Photo = icon;
-        
         } else {
         throw new Exception();
         }

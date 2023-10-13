@@ -4,6 +4,7 @@
  */
 package ui;
 
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.User;
 
@@ -203,7 +204,13 @@ public class ViewPanel extends javax.swing.JPanel {
         } else {
             notMentionedRadioButton.setSelected(true);
         }
-        
+        ImageIcon userImage = newUser.getUserImage();
+        if (userImage != null){
+            photoLabel.setIcon(userImage); 
+        } else {
+            photoLabel.setText("No image uploaded.");
+        }
+        add(photoLabel);
         patientTypeComboBox.setSelectedItem(this.newUser.getPatientType());
         photoLabel.setIcon(newUser.getUserImage());
     }

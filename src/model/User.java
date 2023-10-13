@@ -24,7 +24,7 @@ public class User {
     }
 
     public void setUserImage(ImageIcon userImage) {
-        this.Photo = Photo;
+        this.Photo = userImage;
     }
     
     public String getFirstName(){
