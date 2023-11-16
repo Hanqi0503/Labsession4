@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import model.User;
+import util.DatabaseConnector;
 
 /**
  *
@@ -28,7 +29,7 @@ public class FormPanel extends javax.swing.JPanel {
     public FormPanel(JPanel bottomPanel) {
         initComponents();
         this.bottomPanel = bottomPanel;
-        this.newUser = new User();
+  
     }
 
     /**
@@ -201,88 +202,101 @@ public class FormPanel extends javax.swing.JPanel {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-        User newUser = new User();
-        newUser.setFirstName(firstNameTextField.getText());
-        newUser.setLastName(lastNameTextField.getText());
-        newUser.setAge(ageTextField.getText());
-        newUser.setEmail(emailTextField.getText());
-        newUser.setMessage(messageTextField.getText());
-        String Gender = maleRadioButton.isSelected() ? "Male" : femaleRadioButton.isSelected() ? "Female" : notMentionedRadioButton.isSelected() ? "Prefer not to say" : "";
-        newUser.setGender(Gender);
-        newUser.setPatientType(patientTypeComboBox.getSelectedItem().toString());
-        newUser.setUserImage(Photo);
-        
-        ViewPanel newViewPanel = new ViewPanel(newUser);
-        bottomPanel.add(newViewPanel);
-        CardLayout layout = (CardLayout) bottomPanel.getLayout();
-        layout.next(bottomPanel);
-        
-        String FirstName = firstNameTextField.getText();
-        String LastName = lastNameTextField.getText();
-        String Age = ageTextField.getText();
-        String Email = emailTextField.getText();
-        String Message = messageTextField.getText();
-//        String Gender = gender;
-        String PatientType = patientTypeComboBox.getSelectedItem().toString();
-        
-        boolean noError = true;
-        if(FirstName.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "First Name is mandatory");
-        }
-        if(LastName.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Last Name is mandatory");
-        }
-        if(Age.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Age is mandatory");
-        }
-        if(Email.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Email is mandatory");
-        }
-        if(Message.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Message is mandatory");
-        }
-        if(Gender.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Gender is mandatory");
-        }
-        if(PatientType.equals("")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Patient type is mandatory");
-        }
-        
-        if(!firstNameTextField.getText().isEmpty() & !firstNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "First Name must contain only letters or Chinese characters!");
-        }
-        if(!lastNameTextField.getText().isEmpty() & !lastNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Last Name must contain only letters or Chinese characters!");
-        }
-        if(!ageTextField.getText().isEmpty()){
-            int age;
+        String firstName = firstNameTextField.getText(); // 替换为你的firstName文本框名称
+        String lastName = lastNameTextField.getText();   // 替换为你的lastName文本框名称
+        int age = Integer.parseInt(ageTextField.getText()); // 从年龄文本框获取年龄
+        // 创建User对象
+        User newUser = new User(firstName,lastName, age); // 假设User类接受全名和年龄
 
-            try {
-                age = Integer.parseInt(ageTextField.getText());
-            }
-            catch (NumberFormatException e) {
-                noError = false;
-                JOptionPane.showMessageDialog(null, "Age must be a valid integer !");
-                return;
-            }
+        // 添加用户到数据库
+        try {
+            DatabaseConnector.addUser(newUser);  // 调用DatabaseConnector类的静态方法
+            JOptionPane.showMessageDialog(null, "Submitted successfully！");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "错误：" + e.getMessage());
         }
-        if(!emailTextField.getText().isEmpty() & !emailTextField.getText().matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
-            noError = false;
-            JOptionPane.showMessageDialog(null, "Email address is not valid!");
-        }
-
-        if (noError) {
-            JOptionPane.showMessageDialog(this, FirstName+" "+LastName+" "+Age+" "+Email+" "+Message+" "+Gender+" "+PatientType, "Customer Registration Form", HEIGHT);
-        }
+//        User newUser = new User();
+//        newUser.setFirstName(firstNameTextField.getText());
+//        newUser.setLastName(lastNameTextField.getText());
+//        newUser.setAge(Integer.parseInt(ageTextField.getText()));
+//        newUser.setEmail(emailTextField.getText());
+//        newUser.setMessage(messageTextField.getText());
+//        String Gender = maleRadioButton.isSelected() ? "Male" : femaleRadioButton.isSelected() ? "Female" : notMentionedRadioButton.isSelected() ? "Prefer not to say" : "";
+//        newUser.setGender(Gender);
+//        newUser.setPatientType(patientTypeComboBox.getSelectedItem().toString());
+//        newUser.setUserImage(Photo);
+//        
+//        ViewPanel newViewPanel = new ViewPanel(newUser);
+//        bottomPanel.add(newViewPanel);
+//        CardLayout layout = (CardLayout) bottomPanel.getLayout();
+//        layout.next(bottomPanel);
+//        
+//        String FirstName = firstNameTextField.getText();
+//        String LastName = lastNameTextField.getText();
+//        String Age = ageTextField.getText();
+//        String Email = emailTextField.getText();
+//        String Message = messageTextField.getText();
+////        String Gender = gender;
+//        String PatientType = patientTypeComboBox.getSelectedItem().toString();
+//        
+//        boolean noError = true;
+//        if(FirstName.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "First Name is mandatory");
+//        }
+//        if(LastName.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Last Name is mandatory");
+//        }
+//        if(Age.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Age is mandatory");
+//        }
+//        if(Email.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Email is mandatory");
+//        }
+//        if(Message.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Message is mandatory");
+//        }
+//        if(Gender.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Gender is mandatory");
+//        }
+//        if(PatientType.equals("")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Patient type is mandatory");
+//        }
+//        
+//        if(!firstNameTextField.getText().isEmpty() & !firstNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "First Name must contain only letters or Chinese characters!");
+//        }
+//        if(!lastNameTextField.getText().isEmpty() & !lastNameTextField.getText().matches("[a-zA-z\u4e00-\u9fa5]+")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Last Name must contain only letters or Chinese characters!");
+//        }
+//        if(!ageTextField.getText().isEmpty()){
+//            int age;
+//
+//            try {
+//                age = Integer.parseInt(ageTextField.getText());
+//            }
+//            catch (NumberFormatException e) {
+//                noError = false;
+//                JOptionPane.showMessageDialog(null, "Age must be a valid integer !");
+//                return;
+//            }
+//        }
+//        if(!emailTextField.getText().isEmpty() & !emailTextField.getText().matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")){
+//            noError = false;
+//            JOptionPane.showMessageDialog(null, "Email address is not valid!");
+//        }
+//
+//        if (noError) {
+//            JOptionPane.showMessageDialog(this, FirstName+" "+LastName+" "+Age+" "+Email+" "+Message+" "+Gender+" "+PatientType, "Customer Registration Form", HEIGHT);
+//        }
     }//GEN-LAST:event_submitButtonActionPerformed
     public ImageIcon Photo;
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed

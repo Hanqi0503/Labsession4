@@ -11,14 +11,27 @@ import javax.swing.ImageIcon;
  * @author hanqi
  */
 public class User {
+    int id;
     String FirstName;
     String LastName ;
-    String Age ;
+    int Age ;
     String Email ;
     String Message;
     String Gender;
     String PatientType;
     private ImageIcon Photo;
+    public User(int id, String name, int age) {
+    this.id = id;
+    this.FirstName = FirstName;
+    this.LastName = LastName;
+    this.Age = age;
+}
+    public User( String FirstName, String Lastname, int age) {
+//    this.id = id;
+    this.FirstName = FirstName;
+    this.LastName = Lastname;
+    this.Age = age;
+}
     public ImageIcon getUserImage() {
         return Photo;
     }
@@ -35,6 +48,14 @@ public class User {
         this.FirstName = FirstName;
     }
     
+    public int getId(){
+        return id;
+    }
+    
+    public void setId(int id){
+        this.id = id;
+    }
+    
     public String getLastName(){
         return LastName;
     }
@@ -43,11 +64,11 @@ public class User {
         this.LastName = LastName;
     }
     
-    public String getAge(){
+    public int getAge(){
         return Age;
     }
     
-    public void setAge(String Age){
+    public void setAge(int Age){
         this.Age = Age;
     }
     
@@ -82,4 +103,6 @@ public class User {
     public void setPatientType(String PatientType){
         this.PatientType = PatientType;
     }
+    public User() {
+}
 }
