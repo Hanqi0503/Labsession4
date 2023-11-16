@@ -97,7 +97,7 @@ public class DatabaseConnector {
      * @param newUser modified user details to be added
      */
     public static void editUser(User oldUser, User newUser) {
-        String query = "UPDATE USER SET name=?, age=? WHERE id=?";
+        String query = "UPDATE USER SET FirstName=?,LastName=?, Age=? WHERE id=?";
 
         try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             PreparedStatement stmt = conn.prepareStatement(query);
